@@ -8,14 +8,10 @@ ruta.init({
     rutaId: {
         type: DataTypes.STRING,
         primaryKey: true,
-        unique: true
+        autoIncrement: true
     },
-    primeraEstacion:{
-        type: paradero,
-        allowNull: false
-    },
-    siguienteEstacion:{
-        type: paradero,
+    nombre:{
+        type:DataTypes.STRING,
         allowNull: false
     }
 },{
