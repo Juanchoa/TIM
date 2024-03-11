@@ -16,10 +16,6 @@ paradero.init({
     horaInicio:{
         type: DataTypes.STRING,
         allowNull: false
-    },
-    horaFin:{
-        type: DataTypes.STRING,
-        allowNull: false
     }
 },{
     sequelize: connection,
