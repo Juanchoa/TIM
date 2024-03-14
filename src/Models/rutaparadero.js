@@ -1,31 +1,27 @@
 const {Model, DataTypes} = require('sequelize');
 const connection = require('../DataBase/connection');
 
-class paradero extends Model{};
+class rutaparadero extends Model{};
 
-paradero.init({
-    paraderoId: {
+rutaparadero.init({
+    rutaParaderoId:{
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    nombreParadero:{
-        type: DataTypes.STRING,
+    rutaId:{
+        type: DataTypes.INTEGER,
+        primaryKey: true,
         allowNull: false
     },
-    horaInicio:{
-        type: DataTypes.TIME,
-        allowNull: false
-    },
-    horaFin:{
-        type: DataTypes.STRING,
+    paraderoId:{
+        type: DataTypes.INTEGER,
+        primaryKey: true,
         allowNull: false
     }
 },{
     sequelize: connection,
-    modelName: 'paradero',
+    modelName: 'rutaparadero',
     paranoid: true,
     deletedAt: 'destroyTime'
 });
-
-module.exports = paradero;
