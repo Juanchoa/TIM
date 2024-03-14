@@ -6,16 +6,12 @@ class ruta extends Model{};
 
 ruta.init({
     rutaId: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         primaryKey: true,
-        unique: true
+        autoIncrement: true
     },
-    primeraEstacion:{
-        type: paradero,
-        allowNull: false
-    },
-    siguienteEstacion:{
-        type: paradero,
+    nombreRuta:{
+        type:DataTypes.STRING,
         allowNull: false
     }
 },{
