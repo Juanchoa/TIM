@@ -5,20 +5,20 @@ class paradero extends Model{};
 
 paradero.init({
     paraderoId: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         primaryKey: true,
-        unique: true
+        autoIncrement: true
     },
     nombreParadero:{
         type: DataTypes.STRING,
         allowNull: false
     },
     horaInicio:{
-        type: DataTypes.STRING,
+        type: DataTypes.TIME,
         allowNull: false
     },
     horaFin:{
-        type: DataTypes.STRING,
+        type: DataTypes.TIME,
         allowNull: false
     }
 },{

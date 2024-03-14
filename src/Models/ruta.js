@@ -6,11 +6,11 @@ class ruta extends Model{};
 
 ruta.init({
     rutaId: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    nombre:{
+    nombreRuta:{
         type:DataTypes.STRING,
         allowNull: false
     }
