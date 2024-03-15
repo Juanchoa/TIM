@@ -7,7 +7,7 @@ empresaTransporte.init({
     empresaId: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true,
+        autoIncrement: true
     },
     nombreEmpresa:{
         type: DataTypes.STRING,
