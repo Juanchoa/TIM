@@ -1,12 +1,11 @@
 require('express');
-const ruta = require('../Models/ruta');
+const empresaTransporte = require('../Models/empresaTransporte');
 
-//crear el restaurante
-async function crearRuta(req,res){ //peticion y respuesta 
+async function crearEmpresaTransporte(req,res){ //peticion y respuesta 
     
     try{
-        await ruta.create({
-            nombreRuta: req.body.nombreRuta,
+        await empresaTransporte.create({
+            nombreEmpresa: req.body.nombreEmpresa
         }).then(function(data){
             return res.status(200).json({
                 data:data
@@ -21,16 +20,14 @@ async function crearRuta(req,res){ //peticion y respuesta
         console.log(e);
     }
 }
-async function listarRuta(req,res){ //peticion y respuesta 
-
+async function listarEmpresaTransporte(req,res){ //peticion y respuesta 
     try{
-        await ruta.findAll({
-            attributes: [
-                'rutaId',
-                'nombreRuta'
+        await empresaTransporte.findAll({
+            attributes:[
+             'empresaId',
+             'nombreEmpresa'
             ],
-            order: ['nombreRuta']
-            
+            order: ['empresaId']
         }).then(function(data){
             return res.status(200).json({
                 data:data
@@ -47,12 +44,12 @@ async function listarRuta(req,res){ //peticion y respuesta
     }
     
 }
-async function editarRuta(req,res){
+async function editarEmpresaTransporte(req,res){
     try{
-        await ruta.update({
-           nombreRuta: req.body.nombreRuta
+        await empresaTransporte.update({
+             nombreEmpresa: req.body.nombreEmpresa
         },{
-            where:{rutaId: req.params.rutaId}
+            where:{empresaId: req.params.empresaId}
         }).then(function(data){
             return res.status(200).json({
                 data:data
@@ -67,10 +64,10 @@ async function editarRuta(req,res){
         console.log(e);
     }
 }
-async function habilitarRuta(req,res){
+async function habilitarEmpresaTransporte(req,res){
     try{
-        await ruta.restore({
-            where: { rutaId : req.params.rutaId}
+        await empresaTransporte.restore({
+            where: { empresaId : req.params.empresaId}
         }).then(function(data){
             return res.status(200).json({
                 data:data
@@ -85,10 +82,10 @@ async function habilitarRuta(req,res){
         console.log(e);
     }
 }
-async function deshabiltarRuta(req,res){
+async function deshabiltarEmpresaTransporte(req,res){
     try{
-        await ruta.destroy({
-            where:{rutaId: req.params.rutaId}
+        await empresaTransporte.destroy({
+            where:{empresaId: req.params.empresaId}
         }).then(function(data){
             return res.status(200).json({
                 data:data
@@ -104,9 +101,9 @@ async function deshabiltarRuta(req,res){
     }
 }
 module.exports = {
-    crearRuta,
-    editarRuta,
-    habilitarRuta,
-    deshabiltarRuta,
-    listarRuta
+    crearEmpresaTransporte,
+    editarEmpresaTransporte,
+    listarEmpresaTransporte,
+    deshabiltarEmpresaTransporte,
+    habilitarEmpresaTransporte
 }
