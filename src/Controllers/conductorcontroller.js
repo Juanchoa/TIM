@@ -1,12 +1,16 @@
 require('express');
-const ruta = require('../Models/ruta');
+const conductor = require('../Models/conductor');
+const vehiculo = require('../Models/vehiculo');
 
-//crear el restaurante
-async function crearRuta(req,res){ //peticion y respuesta 
+
+async function crearConductor(req,res){ //peticion y respuesta 
     
     try{
-        await ruta.create({
-            nombreRuta: req.body.nombreRuta,
+        await conductor.create({
+            conductorId: req.body.conductorId,
+            nombreConductor: req.body.nombreConductor,
+            placaVehiculo: req.body.placaVehiculo,
+            horarioConductor: req.body.horarioConductor
         }).then(function(data){
             return res.status(200).json({
                 data:data
@@ -21,16 +25,16 @@ async function crearRuta(req,res){ //peticion y respuesta
         console.log(e);
     }
 }
-async function listarRuta(req,res){ //peticion y respuesta 
-
+async function listarConductor(req,res){ //peticion y respuesta 
     try{
         await ruta.findAll({
-            attributes: [
-                'rutaId',
-                'nombreRuta'
+            attributes:[
+             'conductorId',
+             'nombreConductor',
+             'placaVehiculo',
+             'horarioConductor'
             ],
-            order: ['nombreRuta']
-            
+            order: ['conductorId']
         }).then(function(data){
             return res.status(200).json({
                 data:data
@@ -47,10 +51,12 @@ async function listarRuta(req,res){ //peticion y respuesta
     }
     
 }
-async function editarRuta(req,res){
+async function editarConductor(req,res){
     try{
-        await ruta.update({
-           nombreRuta: req.body.nombreRuta
+        await conductor.update({
+             nombreConductor: req.body.conductorId,
+             placaVehiculo: req.body.placaVehiculo,
+             horarioConductor: req.body.horarioConductor
         },{
             where:{rutaId: req.params.rutaId}
         }).then(function(data){
@@ -67,10 +73,10 @@ async function editarRuta(req,res){
         console.log(e);
     }
 }
-async function habilitarRuta(req,res){
+async function habilitarConductor(req,res){
     try{
-        await ruta.restore({
-            where: { rutaId : req.params.rutaId}
+        await conductor.restore({
+            where: { conductorId : req.params.conductorId}
         }).then(function(data){
             return res.status(200).json({
                 data:data
@@ -85,10 +91,10 @@ async function habilitarRuta(req,res){
         console.log(e);
     }
 }
-async function deshabiltarRuta(req,res){
+async function deshabiltarConductor(req,res){
     try{
-        await ruta.destroy({
-            where:{rutaId: req.params.rutaId}
+        await conductor.destroy({
+            where:{conductorId: req.params.conductorId}
         }).then(function(data){
             return res.status(200).json({
                 data:data
@@ -104,9 +110,9 @@ async function deshabiltarRuta(req,res){
     }
 }
 module.exports = {
-    crearRuta,
-    editarRuta,
-    habilitarRuta,
-    deshabiltarRuta,
-    listarRuta
+    crearConductor,
+    editarConductor,
+    deshabiltarConductor,
+    habilitarConductor,
+    listarConductor
 }
