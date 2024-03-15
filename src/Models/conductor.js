@@ -13,7 +13,7 @@ conductor.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    vehiculoId:{
+    placaVehiculo:{
         type: DataTypes.STRING,
         allowNull: false
     },
