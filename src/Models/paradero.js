@@ -13,10 +13,6 @@ paradero.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    horaInicio:{
-        type: DataTypes.TIME,
-        allowNull: false
-    }
 },{
     sequelize: connection,
     modelName: 'paradero',

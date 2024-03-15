@@ -5,9 +5,9 @@ class empresaTransporte extends Model{};
 
 empresaTransporte.init({
     empresaId: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         primaryKey: true,
-        unique: true
+        autoIncrement: true,
     },
     nombreEmpresa:{
         type: DataTypes.STRING,

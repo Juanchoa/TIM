@@ -10,11 +10,11 @@ vehiculo.init({
         unique: true
     },
     empresaId:{
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     rutaId:{
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     marca:{
