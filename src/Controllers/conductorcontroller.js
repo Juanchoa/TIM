@@ -76,7 +76,7 @@ async function editarConductor(req,res){
 async function habilitarConductor(req,res){
     try{
         await conductor.restore({
-            where: { conductorId : req.params.conductorId}
+            where: {conductorId : req.params.conductorId}
         }).then(function(data){
             return res.status(200).json({
                 data:data
