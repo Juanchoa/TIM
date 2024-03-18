@@ -30,10 +30,15 @@ async function listarRutaParadero(req,res){ //peticion y respuesta
             attributes: [
                 'rutaParaderoId',
                 'rutaId',
-                'paraderoId'   
+                'paraderoId',
+                'numeroParada'   
             ],
-            order: ['rutaparaderoId']
-            
+            order: ['rutaparaderoId'],
+            include: {
+                model: ruta,
+                where : {rutaId : req.params.rutaId},
+                attributes: ['nombreRuta']
+            }
         }).then(function(data){
             return res.status(200).json({
                 data:data
@@ -53,10 +58,10 @@ async function listarRutaParadero(req,res){ //peticion y respuesta
 async function editarRutaParadero(req,res){
     try{
         await rutaParadero.update({
-           rutaId: req.body.rutaId,
-           paraderoId: req.body.paraderoId
+           paraderoId: req.body.paraderoId,
+           numeroParada:req.body.numeroParada 
         },{
-            where:{rutaParaderoId: req.params.rutaParaderoId}
+            where:{rutaId: req.params.rutaId}
         }).then(function(data){
             return res.status(200).json({
                 data:data

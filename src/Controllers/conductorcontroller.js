@@ -1,6 +1,5 @@
 require('express');
 const conductor = require('../Models/conductor');
-const vehiculo = require('../Models/vehiculo');
 
 
 async function crearConductor(req,res){ //peticion y respuesta 

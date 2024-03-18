@@ -39,24 +39,27 @@ async function sync(){
     vehiculo.belongsTo(ruta,{
         foreignKey: 'rutaId'
     });
-    await connection.sync({force: false})
-    .then(()=>{
-         console.log('Base de datos sincronizada');
-         
-    })
-    .catch((error)=>{
-         console.error('Error al sincronizar la base de datos:',error);
-    });
 
     //Foreign key ruta - paradero 
-    ruta.hasMany(vehiculo,{
+    rutaparadero.hasMany(ruta,{
         foreignKey: 'rutaId',
         onDelete: 'restrict',
         onUpdate: 'cascade'
     });
-    vehiculo.belongsTo(ruta,{
+    rutaparadero.hasMany(paradero,{
+        foreignKey: 'paraderoId',
+        onDelete: 'restrict',
+        onUpdate: 'cascade'
+    });
+
+    ruta.belongsTo(rutaparadero,{
         foreignKey: 'rutaId'
     });
+    
+    paradero.belongsTo(rutaparadero,{
+        foreignKey: 'paraderoId'
+    });
+    
     await connection.sync({force: false})
     .then(()=>{
          console.log('Base de datos sincronizada');
