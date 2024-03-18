@@ -8,7 +8,8 @@ async function crearRutaParadero(req,res){ //peticion y respuesta
     try{
         await rutaParadero.create({
             paraderoId: req.body.paraderoId,
-            rutaId: req.body.rutaId
+            rutaId: req.body.rutaId,
+            numeroParada: req.body.numeroParada
         }).then(function(data){
             return res.status(200).json({
                 data:data
@@ -58,10 +59,11 @@ async function listarRutaParadero(req,res){ //peticion y respuesta
 async function editarRutaParadero(req,res){
     try{
         await rutaParadero.update({
+           rutaId: req.body.rutaId,
            paraderoId: req.body.paraderoId,
-           numeroParada:req.body.numeroParada 
+           numeroParada:req.body.numeroParada,
         },{
-            where:{rutaId: req.params.rutaId}
+            where:{rutaParaderoId: req.params.rutaParaderoId}
         }).then(function(data){
             return res.status(200).json({
                 data:data

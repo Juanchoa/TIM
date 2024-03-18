@@ -1,7 +1,7 @@
 require('express');
 const ruta = require('../Models/ruta');
 
-//crear el restaurante
+
 async function crearRuta(req,res){ //peticion y respuesta 
     
     try{
