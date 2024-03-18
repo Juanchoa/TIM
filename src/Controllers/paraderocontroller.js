@@ -49,7 +49,7 @@ async function actualizarParadero(req,res){
         await paradero.update({
             nombreParadero: req.body.nombreParadero
         },{
-            where:{nombreParadero: req.params.nombreParadero}
+            where:{paraderoId: req.params.paraderoId}
         }).then(function(data){
             return res.status(200).json({
                 data:data
@@ -68,7 +68,7 @@ async function actualizarParadero(req,res){
 async function deshabilitarParadero(req,res){
     try{
         await paradero.destroy({
-            where:{nombreParadero: req.params.nombreParadero}
+            where:{paraderoId: req.params.paraderoId}
         }).then(function(data){
             return res.status(200).json({
                 data:data
@@ -87,7 +87,7 @@ async function deshabilitarParadero(req,res){
 async function habilitarParadero(req,res){
     try{
         await paradero.restore({
-            where: {nombreParadero: req.params.nombreParadero}
+            where: {paraderoId: req.params.paraderoId}
         }).then(function(data){
             return res.status(200).json({
                 data:data

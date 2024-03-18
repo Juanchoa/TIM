@@ -12,7 +12,7 @@ paradero.init({
     nombreParadero:{
         type: DataTypes.STRING,
         allowNull: false
-    },
+    }
 },{
     sequelize: connection,
     modelName: 'paradero',
