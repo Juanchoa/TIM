@@ -25,3 +25,5 @@ rutaparadero.init({
     paranoid: true,
     deletedAt: 'destroyTime'
 });
+
+module.exports = rutaparadero;

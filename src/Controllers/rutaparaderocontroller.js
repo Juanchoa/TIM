@@ -1,16 +1,14 @@
 require('express');
-const conductor = require('../Models/conductor');
-const vehiculo = require('../Models/vehiculo');
-
-
-async function crearConductor(req,res){ //peticion y respuesta 
+const rutaParadero = require('../Models/rutaparadero');
+const ruta = require('../Models/ruta');
+const paradero = require('../Models/paradero');
+//crear el restaurante
+async function crearRutaParadero(req,res){ //peticion y respuesta 
     
     try{
-        await conductor.create({
-            conductorId: req.body.conductorId,
-            nombreConductor: req.body.nombreConductor,
-            placaVehiculo: req.body.placaVehiculo,
-            horarioConductor: req.body.horarioConductor
+        await rutaParadero.create({
+            paraderoId: req.body.paraderoId,
+            rutaId: req.body.rutaId
         }).then(function(data){
             return res.status(200).json({
                 data:data
@@ -25,16 +23,17 @@ async function crearConductor(req,res){ //peticion y respuesta
         console.log(e);
     }
 }
-async function listarConductor(req,res){ //peticion y respuesta 
+async function listarRutaParadero(req,res){ //peticion y respuesta 
+
     try{
-        await conductor.findAll({
-            attributes:[
-             'conductorId',
-             'nombreConductor',
-             'placaVehiculo',
-             'horarioConductor'
+        await rutaParadero.findAll({
+            attributes: [
+                'rutaParaderoId',
+                'rutaId',
+                'paraderoId'   
             ],
-            order: ['conductorId']
+            order: ['rutaparaderoId']
+            
         }).then(function(data){
             return res.status(200).json({
                 data:data
@@ -51,14 +50,13 @@ async function listarConductor(req,res){ //peticion y respuesta
     }
     
 }
-async function editarConductor(req,res){
+async function editarRutaParadero(req,res){
     try{
-        await conductor.update({
-             nombreConductor: req.body.conductorId,
-             placaVehiculo: req.body.placaVehiculo,
-             horarioConductor: req.body.horarioConductor
+        await rutaParadero.update({
+           rutaId: req.body.rutaId,
+           paraderoId: req.body.paraderoId
         },{
-            where:{conductorId: req.params.conductorId}
+            where:{rutaParaderoId: req.params.rutaParaderoId}
         }).then(function(data){
             return res.status(200).json({
                 data:data
@@ -73,10 +71,10 @@ async function editarConductor(req,res){
         console.log(e);
     }
 }
-async function habilitarConductor(req,res){
+async function habilitarRutaParadero(req,res){
     try{
-        await conductor.restore({
-            where: { conductorId : req.params.conductorId}
+        await rutaParadero.restore({
+            where: { rutaParaderoId : req.params.rutaParaderoId}
         }).then(function(data){
             return res.status(200).json({
                 data:data
@@ -91,10 +89,10 @@ async function habilitarConductor(req,res){
         console.log(e);
     }
 }
-async function deshabiltarConductor(req,res){
+async function deshabiltarRutaParadero(req,res){
     try{
-        await conductor.destroy({
-            where:{conductorId: req.params.conductorId}
+        await rutaParadero.destroy({
+            where:{rutaParaderoId: req.params.rutaParaderoId}
         }).then(function(data){
             return res.status(200).json({
                 data:data
@@ -110,9 +108,9 @@ async function deshabiltarConductor(req,res){
     }
 }
 module.exports = {
-    crearConductor,
-    editarConductor,
-    deshabiltarConductor,
-    habilitarConductor,
-    listarConductor
+    crearRutaParadero,
+    editarRutaParadero,
+    habilitarRutaParadero,
+    deshabiltarRutaParadero,
+    listarRutaParadero
 }
