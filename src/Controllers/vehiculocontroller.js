@@ -1,6 +1,6 @@
 require('express');
 const vehiculo = require('../Models/vehiculo');
-const empresa = require('../Models/empresatransporte');
+const empresa = require('../Models/empresaTransporte');
 
 //crear vehiculo
 async function crearVehiculo(req, res){ // peticion y respuesta a esa peticion
