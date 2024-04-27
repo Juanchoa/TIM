@@ -1,6 +1,7 @@
 require('./DataBase/sync.js');
 
 const connection = require('./DataBase/connection');
+const cors =require('cors');
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 1337;
@@ -16,6 +17,10 @@ const vehiculorouter = require('./Routers/vehiculorouter.js');
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+
+app.use(cors({
+    origin: 'http://localhost:3000/'
+}));
 
 app.listen(port, function() { // NOS VA A ESCUCHAR POR EL PUERTO QUE LE DEFINIMOS
     console.log('The application is running on port' + port);
