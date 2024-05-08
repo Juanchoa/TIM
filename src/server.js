@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 app.use(cors({
-    origin: 'http://localhost:3000/'
+    origin: 'http://localhost:3000'
 }));
 
 app.listen(port, function() { // NOS VA A ESCUCHAR POR EL PUERTO QUE LE DEFINIMOS

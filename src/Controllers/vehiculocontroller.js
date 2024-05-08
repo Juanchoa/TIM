@@ -36,9 +36,36 @@ async function listarVehiculo(req,res){
             order:['placaVehiculo'],
             include:{
                 model:empresa,
-                where:{empresaId: req.params.empresaId},
+                //where:{empresaId: req.params.empresaId},
                 attributes:['nombreEmpresa']
             }
+        }).then(function(data){
+            return res.status(200).json({
+                data:data
+            });
+        }).catch(error =>{
+            return res.status(400).json({
+                error:error
+            });
+        })
+    }
+    catch(e){
+        console.log(e);
+    }
+}
+async function listarUnVehiculo(req,res){
+    try{
+        await vehiculo.findOne({
+            where:{placaVehiculo: req.params.placaVehiculo},
+            attributes: [
+                'placaVehiculo',
+                'marca',
+                'rutaId'
+            ], include:{
+                model:empresa,
+                //where:{empresaId: req.params.empresaId},
+                attributes:['nombreEmpresa']
+            },
         }).then(function(data){
             return res.status(200).json({
                 data:data
@@ -120,5 +147,6 @@ module.exports = {
     listarVehiculo,
     actualizarVehiculo,
     deshabilitarVehiculo,
-    habilitarVehiculo
+    habilitarVehiculo,
+    listarUnVehiculo
 }
