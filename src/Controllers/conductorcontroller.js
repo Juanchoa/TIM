@@ -50,10 +50,36 @@ async function listarConductor(req,res){ //peticion y respuesta
     }
     
 }
+
+async function listarUnConductor(req,res){
+    try{
+        await conductor.findOne({
+            where:{conductorId: req.params.conductorId},
+            attributes: [
+                'conductorId',
+                'nombreConductor',
+                'placaVehiculo',
+                'horarioConductor'
+            ], 
+        }).then(function(data){
+            return res.status(200).json({
+                data:data
+            });
+        }).catch(error =>{
+            return res.status(400).json({
+                error:error
+            });
+        })
+    }
+    catch(e){
+        console.log(e);
+    }
+}
+
 async function editarConductor(req,res){
     try{
         await conductor.update({
-             nombreConductor: req.body.conductorId,
+             nombreConductor: req.body.nombreConductor,
              placaVehiculo: req.body.placaVehiculo,
              horarioConductor: req.body.horarioConductor
         },{
@@ -72,6 +98,7 @@ async function editarConductor(req,res){
         console.log(e);
     }
 }
+
 async function habilitarConductor(req,res){
     try{
         await conductor.restore({
@@ -113,5 +140,6 @@ module.exports = {
     editarConductor,
     deshabiltarConductor,
     habilitarConductor,
-    listarConductor
+    listarConductor, 
+    listarUnConductor
 }
