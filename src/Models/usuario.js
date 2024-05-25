@@ -1,7 +1,11 @@
 const {Model, DataTypes} = require('sequelize');
 const connection = require('../DataBase/connection');
 
-class usuario extends Model{};
+class usuario extends Model{
+    static rolUsuario(){
+        return (["Pasajero", "Conductor"])
+    }
+};
 
 usuario.init({
     nombreUsuario: {
@@ -11,6 +15,10 @@ usuario.init({
     },
     contrasena:{
         type: DataTypes.STRING,
+        allowNull: false
+    },
+    rolUsuario: {
+        type:DataTypes.STRING,
         allowNull: false
     }
 },{

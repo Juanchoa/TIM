@@ -1,5 +1,7 @@
 require('./DataBase/sync.js');
 
+const usuariocontroller = require('./Controllers/usuariocontroller');
+
 const connection = require('./DataBase/connection');
 const cors =require('cors');
 const express = require('express');
@@ -27,10 +29,23 @@ app.listen(port, function() { // NOS VA A ESCUCHAR POR EL PUERTO QUE LE DEFINIMO
 })
 
 //api
-app.use('/api', conductorrouter);
-app.use('/api', empresatransporterouter);
-app.use('/api', paraderorouter);
-app.use('/api', rutaparaderorouter);
-app.use('/api', rutarouter);
-app.use('/api', usuariorouter);
-app.use('/api', vehiculorouter);    
+app.use('/api', usuariorouter);  
+
+// Define las rutas que deseas proteger
+const rutasProtegidas = [
+    { router: conductorrouter }, 
+    { router: empresatransporterouter },
+    { router: paraderorouter },
+    { router: rutaparaderorouter},
+    { router: rutarouter},
+    { router: vehiculorouter}
+];
+
+// Itera sobre las rutas protegidas y aplica el middleware de verificación de token
+rutasProtegidas.forEach(({ router }) => {
+    app.use(`/api`, usuariocontroller.verificarToken, router);
+});
+
+
+
+  
